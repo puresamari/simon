@@ -1,10 +1,13 @@
 {
   "name": "simon",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run examples",
+    "examples": "npm run examples:hello_world && npm run examples:variables",
+    "examples:hello_world": "ts-node simonlang examples/hello-world.simon",
+    "examples:variables": "ts-node simonlang examples/variables.simon"
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/puresamari/simon/issues"
   },
-  "homepage": "https://github.com/puresamari/simon#readme"
+  "homepage": "https://github.com/puresamari/simon#readme",
+  "devDependencies": {
+    "@types/node": "^14.0.20",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.6"
+  }
 }
