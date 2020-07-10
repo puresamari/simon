@@ -1,5 +1,6 @@
-import { extractVariableName, toJSOutput, detectType } from '../variables';
+import { detectType, extractVariableName, toJSOutput } from '../variables';
 import { SimonLangContext } from './../context';
+import { LineMeta } from './definition';
 
 function extractData(line: string, context: SimonLangContext): {
   name: string,
@@ -16,7 +17,7 @@ function extractData(line: string, context: SimonLangContext): {
   }
 }
 
-export default (line: string, context: SimonLangContext) => {
+export default (command: string, line: string, context: SimonLangContext): LineMeta => {
   const { name, data, isNew } = extractData(line, context);
   return {
     declaration: isNew ? { name, type: detectType(data) } : null,

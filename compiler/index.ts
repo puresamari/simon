@@ -1,9 +1,11 @@
-import { LineMeta, parseCommand, CommanNames, Command } from './commands';
+import { parseCommand, CommanNames, Command } from './commands';
+import { LineMeta } from './commands/definition';
 import { SimonLangContext } from './context';
 
 export const VERSION = '0.0.1';
 
 export function compileLine(line: string, context: SimonLangContext): LineMeta {
+  if (!line.startsWith('simon')) { return { compiledLine: '' };}
   line = line.replace('simon ', '');
   const command = CommanNames.find(v => line.indexOf(v) >= 0) as Command;
   return parseCommand(command, line.replace(command + ' ', ''), context);
