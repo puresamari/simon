@@ -1,11 +1,12 @@
 import { Command } from 'commander';
-import { compileFile, resolveFilePath, version } from './utils';
+import fs from 'fs';
+import path from 'path';
+
+import { VERSION } from './../compiler';
+import { compileFile, resolveFilePath } from './utils';
 
 const chalk = require('chalk');
 const log = console.log;
-
-import fs from 'fs';
-import path from 'path';
 
 export function make() {
   const heat = new Command('compile');
@@ -27,7 +28,7 @@ export function make() {
       if (options.output) {
         const outputPath = resolveFilePath(options.output);
         try {
-            fs.writeFileSync(outputPath, `/*\n  Written in simonlang v${version}.\n  Visit https://github.com/puresamari/simon for more information.\n*/\n\n` + compiled + '\n', 'utf8');
+            fs.writeFileSync(outputPath, `/*\n  Written in simonlang v${VERSION}.\n  Visit https://github.com/puresamari/simon for more information.\n*/\n\n` + compiled + '\n', 'utf8');
         } catch (err) {
           console.log('ERROR WHILE WRITING FILE');
           switch (err.code) {

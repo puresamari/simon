@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 
-const chalk = require('chalk');
-const log = console.log;
-
 import { program } from 'commander';
+
+import { VERSION } from './../compiler';
 import { make as makeCompile } from './compile';
 import { make as makeRun } from './run';
 import { version } from './utils';
+
+
+const chalk = require('chalk');
+const log = console.log;
 
 log(
   chalk.green(
@@ -14,7 +17,12 @@ log(
       font: 'Big',
       horizontalLayout: 'default',
       verticalLayout: 'default',
-    }), 'v' + version
+    })
+  ),
+  '\n',
+  chalk.yellow(
+    'CLI Version', version, '\n',
+    'COMPILER Version', VERSION, '\n'
   )
 );
 
