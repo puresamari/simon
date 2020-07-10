@@ -1,6 +1,6 @@
 # SIMONLANG
 
-Hi my name is `SIMON` and this is a language I'm developing for fun. Have a look at the [playground](puresamari.github.io/simon)
+Hi my name is `SIMON` and this is a language I'm developing for fun. Have a look at the [playground](https://puresamari.github.io/simon/)
 
 # Language
 - Each line is declared with `simon` (the `simon indicator`) in the beginning
