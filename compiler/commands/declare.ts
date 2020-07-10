@@ -1,6 +1,7 @@
 import { detectType, extractVariableName, toJSOutput } from '../variables';
 import { SimonLangContext } from './../context';
 import { LineMeta } from './definition';
+import { evalDeclaration } from './operators';
 
 function extractData(line: string, context: SimonLangContext): {
   name: string,
@@ -21,9 +22,6 @@ export default (command: string, line: string, context: SimonLangContext): LineM
   const { name, data, isNew } = extractData(line, context);
   return {
     declaration: isNew ? { name, type: detectType(data) } : null,
-    compiledLine: `${isNew ? 'var ' : ''}${extractVariableName(name)} = ${toJSOutput(
-      data,
-      context
-    )};`,
+    compiledLine: `${isNew ? 'var ' : ''}${extractVariableName(name)} = ${evalDeclaration(data, context)};`,
   };
 }

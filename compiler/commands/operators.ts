@@ -33,16 +33,50 @@ export const OperatorNameMapping: { [name: string]: Operator } = {
   multiplies: "multiply",
 };
 
-export function getOperator(name: string): Operator | null { return OperatorNameMapping[name] || name }
-export function getSeperator(line: string): OperatorConnector | null { return OperatorConnectors.find(v => line.indexOf(v) >= 0) as OperatorConnector || name }
+export const OperatorSimpleNameMapping: { [name: string]: Operator } = {
+  'divided by': "divide",
+  plus: "add",
+  minus: "subtract",
+  'multiplied by': "multiply"
+};
 
-function compileOperatorLine(operator: Operator, seperator: OperatorConnector, left: string, right: string, context: SimonLangContext): string {
+export function getOperator(name: string): Operator | null { return OperatorNameMapping[name] || name }
+export function getSeperator(line: string): OperatorConnector | null { return OperatorConnectors.find(v => line.indexOf(v) >= 0) as OperatorConnector }
+
+function compileOperatorLine(operator: Operator, direction: OperratorDirection, left: string, right: string, context: SimonLangContext, assignTo?: string): string {
   switch (operator) {
     default:
       let vals = [left, right];
-      if (OperatorConnectorSideMapping[seperator] === OperratorDirection.Left) { vals = vals.reverse(); }
-      return vals.map(v => toJSOutput(v, context)).join(` ${OperatorSymbolMapping[operator]} `) + ';';
+      if (direction = OperratorDirection.Left) { vals = vals.reverse(); }
+      if (!assignTo) { assignTo = vals[0]; }
+      if (!context.variables.has(assignTo)) { return `// ${toJSOutput(assignTo, context)} is not a variable or wasnt declared yet. `; }
+      return vals.map(v => toJSOutput(v, context)).join(` ${OperatorSymbolMapping[operator]}= `) + ';';
   }
+}
+
+function evalDeclarationGetFirstIndex(line: string) {
+  const mappings = Object.keys(OperatorSimpleNameMapping);
+  let first: { operator: Operator, start: number, end: number } | null = null;
+  for (let i = 0; i < mappings.length; i++) {
+    const start = line.indexOf(mappings[i]);
+    const operator = OperatorSimpleNameMapping[mappings[i]];
+    if (
+      (start >= 0) &&
+      (!first || first!.start > start)
+    ) {
+      first = {
+        operator,
+        start,
+        end: start + mappings[i].length // !seperator ? start + operator.length : line.indexOf(seperator) + seperator.length// : start + mappings[i].length // start + mappings[i].length
+      };
+    }
+  }
+  return first;
+}
+export function evalDeclaration(line: string, context: SimonLangContext): string {
+  const firstOperator = evalDeclarationGetFirstIndex(line);
+  if (!firstOperator) { return toJSOutput(line, context); }
+  return `${toJSOutput(line.slice(0, firstOperator.start - 1), context)} ${OperatorSymbolMapping[firstOperator.operator]} ${evalDeclaration(line.slice(firstOperator.end + 1, line.length), context)}`;
 }
 
 export default function opertate(command: string, line: string, context: SimonLangContext): LineMeta {
@@ -52,6 +86,6 @@ export default function opertate(command: string, line: string, context: SimonLa
   if (!seperator) { return { compiledLine: `// Seperator ${seperator} not valid or known for operator ${operator}!` }; }
   const members = line.split(` ${seperator} `);
   return {
-    compiledLine: compileOperatorLine(operator, seperator, members[0], members[1], context)
+    compiledLine: compileOperatorLine(operator, OperatorConnectorSideMapping[seperator], members[0], members[1], context)
   }
 }

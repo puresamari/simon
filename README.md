@@ -18,14 +18,46 @@ For example:
 - `simon declares simons cant do it is no` (var simons_skill = 100)
 - `simon declares peanut butter sandwiches are great` (var peanut_butter_sandwiches = "great")
 
+## Operators
+
+### Mathematic operators
+You can do mathematics in Simonlang _(currently only while doing declarations)_
+#### Usage
+To use mathematical operators just write chain as many of the below operators together. For example:
+
+from:
+
+    simon declares variable with simple division is test variable divided by 10
+to:
+
+    var simonvar_variable_with_simple_division = simonvar_test_variable / 10;
+
+from
+
+    simon declares chained mathematical operators is 10 minus 10 plus 10 divided by variables are gr8 multiplied by test variable
+
+to:
+
+    var simonvar_chained_mathematical_operators = 10 - 10 + 10 / simonvar_variables_are_gr8 * simonvar_test_variable;
+
+#### Available mathematic operators:
+- `minus` becomes `*`
+- `plus` becomes `*`
+- `divided by` becomes `*`
+- `multiplied by` becomes `*`
+
+simon declares variables are gr8 is test variable divided by 10
+simon declares amazing mathematics is 10 minus 10 plus 10 divided by variables are gr8 multiplied by test variable
+
+simon declares variables are gr8 is variables are great divided by 10
+simon declares amazing mathematics is 10 minus 10 plus 10 divided by variables are gr8 multiplied by variables are great
 
 ## Commands
 ### Printing is done by writing "`says`" after the simon indicator
   - Example with primitive string: `simon says hello world` (console.log("hello world"))
   - Example with before mentioned variable "`simons skill`": `simon says simons skill` (console.log(simons_skill))
-
-## Oprators
-### Mathematic operators
+  - 
+### Mathematic commands (THIS IS STUPID AND WILL BE REMOVED)
 - Mathematic operators are written by writing the mathematical operation after the `simon indicator` and seperate two members bye one of the seperators. They re essentially useless right now.
 #### Examples
   - `simon adds 15 to test variable` becomes `simonvar_test_variable + 15`
