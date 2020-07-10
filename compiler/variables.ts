@@ -15,15 +15,19 @@ export function parse(input: string) {
       case 'number':
           return parseFloat(input);
       case 'boolean':
-          return input === 'yes';
+          return input === 'yes' || input === 'true';
       default:
       case 'string':
           return input;
   }
 }
 
+export function extractVariableName(input: string) {
+  return 'simonvar_' + input.split(' ').join('_');
+}
+
 export function toJSOutput(input: any, context: SimonLangContext) {
-  if (context.variables.indexOf(input) >= 0) { return input.split(' ').join('_'); }
+  if (context.variables.indexOf(input) >= 0) { return extractVariableName(input); }
   const parsed = parse(input);
   switch(typeof parsed) {
       default:

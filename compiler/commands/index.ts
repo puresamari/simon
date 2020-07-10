@@ -1,8 +1,9 @@
 import { SimonLangContext } from '../context';
 import { toJSOutput } from '../variables';
+import declares from './declare';
 
 export type LineMeta = {
-  declaration?: string,
+  declaration?: string | null,
   compiledLine: string
 };
 
@@ -13,19 +14,7 @@ const commands: { [command: string]: (line: string, context: SimonLangContext) =
       context
     )});`,
   }),
-  declares: (line: string, context: SimonLangContext) => {
-    const declareIndicator = line.indexOf("is") >= 0 ? "is" : "are";
-    const variableData = line
-      .replace("simon declares ", "")
-      .split(` ${declareIndicator} `);
-    return {
-      declaration: variableData[0],
-      compiledLine: `var ${variableData[0].split(" ").join("_")} = ${toJSOutput(
-        variableData[1],
-        context
-      )};`,
-    };
-  }
+  declares
 }
 
 export type Command = keyof typeof commands;
