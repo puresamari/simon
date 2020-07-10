@@ -6,7 +6,7 @@ import fs from 'fs';
 import path from 'path';
 // import { versions } from 'process';
 
-export const version = require('../package.json').version;
+export const version = '0.0.1';
 
 export const basePath = process.cwd();
 
