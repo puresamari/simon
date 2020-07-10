@@ -1,12 +1,16 @@
-import { compile } from './src/compiler';
+#!/usr/bin/env node
+
+import { compile } from '../compiler';
 
 import fs from 'fs';
 import path from 'path';
 
-const version = require('./package.json').version;
+const version = require('../package.json').version;
+
+const basePath = path.dirname(path.join(__filename, '../../'));
 
 const fileName = process.argv[2] as string;
-const filePath = path.resolve(__dirname, fileName);
+const filePath = path.resolve(basePath, fileName);
 
 const verbose = process.argv.indexOf('--verbose') >= 0;
 const outputPath = process.argv.indexOf('--output') >= 0 ? process.argv[process.argv.indexOf('--output') + 1] as string | null : null;
@@ -41,7 +45,7 @@ if (verbose || !outputPath) {
 }
 
 if (outputPath) {
-    const outputPathABS = path.join(__dirname, outputPath);
+    const outputPathABS = path.join(basePath, outputPath);
     
     console.log("WRITING TO:");
     console.log(outputPathABS);
