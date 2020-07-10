@@ -1,60 +1,10 @@
-export function detectType(input: string): 'string' | 'number' | 'boolean' {
-    if (!isNaN(parseFloat(input))) {
-        return 'number';
-    } else if (input === 'yes' || input === 'no') {
-        return 'boolean';
-    } else {
-        return 'string';
-    }
-}
+import { LineMeta, parseCommand, CommanNames, Command } from './commands';
+import { SimonLangContext } from './context';
 
-export function parse(input: string) {
-    switch(detectType(input)) {
-        case 'number':
-            return parseFloat(input);
-        case 'boolean':
-            return input === 'yes';
-        default:
-        case 'string':
-            return input;
-    }
-}
-
-export function toJSOutput(input: any, context: SimonLangContext) {
-    if (context.variables.indexOf(input) >= 0) { return input.split(' ').join('_'); }
-    const parsed = parse(input);
-    switch(typeof parsed) {
-        default:
-            return "" + parsed;
-        case 'string':
-            return `"${parsed}"`;
-    }
-}
-
-export class SimonLangContext {
-    constructor(public readonly variables: string[] = []) {
-
-    }
-}
-
-export function compileLine(line: string, context: SimonLangContext): {
-    declaration?: string,
-    compiledLine: string
-} {
-    if (line.startsWith('simon says')) {
-        return {
-            compiledLine: `console.log(${toJSOutput(line.split('simon says ')[1], context)});`
-        };
-    }
-    if (line.startsWith('simon declares')) {
-        const declareIndicator = line.indexOf('is') >= 0 ? 'is' : 'are';
-        const variableData = line.replace('simon declares ', '').split(` ${declareIndicator} `);
-        return {
-            declaration: variableData[0],
-            compiledLine: `var ${variableData[0].split(' ').join('_')} = ${toJSOutput(variableData[1], context)};`
-        };
-    }
-    return { compiledLine: `// SIMON COMPILER ERROR while compiling "${line}"` };
+export function compileLine(line: string, context: SimonLangContext): LineMeta {
+  line = line.replace('simon ', '');
+  const command = CommanNames.find(v => line.indexOf(v) >= 0) as Command;
+  return parseCommand(command, line.replace(command + ' ', ''), context);
 }
 
 export function compile(input: string) {
