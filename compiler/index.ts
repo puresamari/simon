@@ -14,7 +14,7 @@ export function compile(input: string) {
     const lines: string[] = [];
     input.split('\n').forEach(line => {
         const comp = compileLine(line, context);
-        if (comp.declaration) { context.variables.push(comp.declaration); }
+        if (comp.declaration) { context.variables.set(comp.declaration.name, comp.declaration.type); }
         lines.push(comp.compiledLine);
     });
 

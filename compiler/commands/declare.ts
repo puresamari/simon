@@ -1,4 +1,4 @@
-import { extractVariableName, toJSOutput } from '../variables';
+import { extractVariableName, toJSOutput, detectType } from '../variables';
 import { SimonLangContext } from './../context';
 
 function extractData(line: string, context: SimonLangContext): {
@@ -12,14 +12,14 @@ function extractData(line: string, context: SimonLangContext): {
   return {
     name,
     data: variableData[1],
-    isNew: !context.variables.includes(name)
+    isNew: !context.variables.has(name)
   }
 }
 
 export default (line: string, context: SimonLangContext) => {
   const { name, data, isNew } = extractData(line, context);
   return {
-    declaration: isNew ? name : null,
+    declaration: isNew ? { name, type: detectType(data) } : null,
     compiledLine: `${isNew ? 'var ' : ''}${extractVariableName(name)} = ${toJSOutput(
       data,
       context

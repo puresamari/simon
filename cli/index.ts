@@ -35,3 +35,5 @@ program.addCommand(makeCompile(), { isDefault: true });
 program.addCommand(makeRun());
 
 program.parse(process.argv);
+
+export {};

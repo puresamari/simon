@@ -1,9 +1,10 @@
+import { SimonVariableType } from './../variables';
 import { SimonLangContext } from '../context';
 import { toJSOutput } from '../variables';
 import declares from './declare';
 
 export type LineMeta = {
-  declaration?: string | null,
+  declaration?: { name: string, type: SimonVariableType } | null,
   compiledLine: string
 };
 

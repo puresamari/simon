@@ -1,6 +1,8 @@
 import { SimonLangContext } from './context';
 
-export function detectType(input: string): 'string' | 'number' | 'boolean' {
+export type SimonVariableType = 'string' | 'number' | 'boolean';
+
+export function detectType(input: string): SimonVariableType {
   if (!isNaN(parseFloat(input))) {
       return 'number';
   } else if (input === 'yes' || input === 'no' || input === 'true' || input === 'false') {
@@ -27,7 +29,7 @@ export function extractVariableName(input: string) {
 }
 
 export function toJSOutput(input: any, context: SimonLangContext) {
-  if (context.variables.indexOf(input) >= 0) { return extractVariableName(input); }
+  if (typeof input === 'string' && context.variables.has(input)) { return extractVariableName(input); }
   const parsed = parse(input);
   switch(typeof parsed) {
       default:

@@ -1,6 +1,6 @@
 import { compile } from ".";
 
-export {};
+// export {};
 
 declare global {
   interface Window {
