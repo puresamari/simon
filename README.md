@@ -41,16 +41,10 @@ to:
     var simonvar_chained_mathematical_operators = 10 - 10 + 10 / simonvar_variables_are_gr8 * simonvar_test_variable;
 
 #### Available mathematic operators:
-- `minus` becomes `*`
-- `plus` becomes `*`
-- `divided by` becomes `*`
+- `minus` becomes `-`
+- `plus` becomes `+`
+- `divided by` becomes `/`
 - `multiplied by` becomes `*`
-
-simon declares variables are gr8 is test variable divided by 10
-simon declares amazing mathematics is 10 minus 10 plus 10 divided by variables are gr8 multiplied by test variable
-
-simon declares variables are gr8 is variables are great divided by 10
-simon declares amazing mathematics is 10 minus 10 plus 10 divided by variables are gr8 multiplied by variables are great
 
 ## Commands
 ### Printing is done by writing "`says`" after the simon indicator
@@ -78,6 +72,8 @@ simon declares amazing mathematics is 10 minus 10 plus 10 divided by variables a
   - with: `simon divides test variable by 4` becomes `simonvar_test_variable / 4;`
 
 Examples can be found in examples/... and their compiled counterparts are in dist/...
+
+---
 
 # CLI
 
