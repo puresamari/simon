@@ -6,7 +6,7 @@ const config = {
   entry: resolve(__dirname, 'compiler/lib.ts'),
   output: {
     path: resolve(__dirname, 'lib'),
-    filename: 'compiler.js',
+    filename: 'simonlang.js',
     libraryTarget: "umd",
     library: pkg.name
   },

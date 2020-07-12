@@ -9,7 +9,7 @@
   "scripts": {
     "start": "nodemon",
     "create": "npm run build && npm run test",
-    "build": "tsc -p . && webpack",
+    "build": "rm -rf lib && tsc -p . && webpack",
     "test": "npm i -g && simonlang examples/test.simon",
     "refresh": "rm -rf ./node_modules ./package-lock.json && npm install",
     "prepublish": "npm run build && npm run test"

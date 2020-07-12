@@ -9,10 +9,10 @@ Hi my name is `SIMON` and this is a language I'm developing for fun. Have a look
 ## Compiling in js
 Since the compiler is written in typescript I compiled a version you can use directly in js (as done in the [playground]) like this:
 
-    <script src="{{path to node_modules}}/lib/compiler.js" defer></script>
+    <script src="{{path to node_modules}}/lib/simonlang.js" defer></script>
 or
 
-    <script src="https://raw.githubusercontent.com/puresamari/simon/master/lib/compiler.js" defer></script>
+    <script src="https://raw.githubusercontent.com/puresamari/simon/master/lib/simonlang.js" defer></script>
 
 to compile in js just use `window.compile({{your code}})` after the above script is imported.
 
