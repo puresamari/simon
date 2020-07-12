@@ -1,6 +1,6 @@
 {
   "name": "@puresamari/simonlang",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Hi my name is `SIMON` and this is a language I'm developing for fun. Have a look at the [playground](https://puresamari.github.io/simon/)",
   "main": "./lib/cli/index.js",
   "bin": {
