@@ -1,6 +1,51 @@
 # SIMONLANG
 
-Hi my name is `SIMON` and this is a language I'm developing for fun. Have a look at the [playground](https://puresamari.github.io/simon/)
+Hi my name is `SIMON` and this is a language I'm developing for fun. Have a look at the [playground]
+
+# Installation
+    npm i [-g|-D|-S] @puresamari/simonlang
+
+# Usage
+## Compiling in js
+Since the compiler is written in typescript I compiled a version you can use directly in js (as done in the [playground]) like this:
+
+    <script src="{{path to node_modules}}/lib/compiler.js" defer></script>
+or
+
+    <script src="https://raw.githubusercontent.com/puresamari/simon/master/lib/compiler.js" defer></script>
+
+to compile in js just use `window.compile({{your code}})` after the above script is imported.
+
+# CLI
+
+Once the `simonlang` cli is installed you can use the cli.
+
+## Compiling
+to install the cli globally use
+
+    npm i -g @puresamari/simonlang
+
+once it is installed you can use it to complie `.simon` files
+
+    simonlang [compile] FILENAME [-p, --print] [-o, --output OUTPUT_FILENAME] 
+To compile `.simon` files into `.js` just run the `compile`. Writing `compile` is optional since its the clis default command.
+- `$ simonlang compile test.simon`
+- `$ simonlang example/throw-error.simon`
+
+### Options
+
+- `[-o, --output OUTPUT_FILENAME]` Path to write the compiled js file
+  - `$ simonlang example/throw-error.simon -o dist/throw-error.js`
+  - `$ simonlang index.simon --output dist/index.js`
+- `[-p, --print]` Print the compiled contents to the console (for testing)
+  - `$ simonlang example/throw-error.simon -p`
+  - `$ simonlang example/throw-error.simon -p -o dist/throw-error.js`
+
+Thanks for stopping by and have a great day
+
+!!!! SIMON !!!!
+
+---
 
 # Language
 Each line is declared with `simon` (the `simon indicator`) in the beginning. For example `simon says ...` or `simon declares ...`
@@ -71,29 +116,4 @@ to:
   - by: `simon multiplies test variable with 4` becomes `simonvar_test_variable * 4;`
   - with: `simon divides test variable by 4` becomes `simonvar_test_variable / 4;`
 
-Examples can be found in examples/... and their compiled counterparts are in dist/...
-
----
-
-# CLI
-
-Once the `simonlang` cli is installed you can use the cli.
-
-## Compiling
-    simonlang [compile] FILENAME [-p, --print] [-o, --output OUTPUT_FILENAME] 
-To compile `.simon` files into `.js` just run the `compile`. Writing `compile` is optional since its the clis default command.
-- `$ simonlang compile test.simon`
-- `$ simonlang example/throw-error.simon`
-
-### Options
-
-- `[-o, --output OUTPUT_FILENAME]` Path to write the compiled js file
-  - `$ simonlang example/throw-error.simon -o dist/throw-error.js`
-  - `$ simonlang index.simon --output dist/index.js`
-- `[-p, --print]` Print the compiled contents to the console (for testing)
-  - `$ simonlang example/throw-error.simon -p`
-  - `$ simonlang example/throw-error.simon -p -o dist/throw-error.js`
-
-Thanks for stopping by and have a great day
-
-!!!! SIMON !!!!
+[playground]: https://puresamari.github.io/simon/

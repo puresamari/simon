@@ -11,7 +11,8 @@
     "create": "npm run build && npm run test",
     "build": "tsc -p . && webpack",
     "test": "npm i -g && simonlang examples/test.simon",
-    "refresh": "rm -rf ./node_modules ./package-lock.json && npm install"
+    "refresh": "rm -rf ./node_modules ./package-lock.json && npm install",
+    "prepublish": "npm run build && npm run test"
   },
   "repository": {
     "type": "git",
