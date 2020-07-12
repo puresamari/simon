@@ -13,7 +13,7 @@ export function make() {
 
   heat.command('file <path>', { isDefault: true })
     .option('-p, --print', 'print information')
-    .option('-o, --output', 'where should the file be compiled to')
+    .option('-o, --output <path>', 'where should the file be compiled to')
     .action((path, options: { print: boolean, output: string | null }) => {
 
       log(chalk.yellow('Compiling', path));
