@@ -1,10 +1,10 @@
 {
-  "name": "simonlang",
+  "name": "@puresamari/simonlang",
   "version": "0.0.1",
-  "description": "",
+  "description": "Hi my name is `SIMON` and this is a language I'm developing for fun. Have a look at the [playground](https://puresamari.github.io/simon/)",
   "main": "./lib/cli/index.js",
   "bin": {
-    "simonlang": "./lib/cli/index.js"
+    "simonlang": "lib/cli/index.js"
   },
   "scripts": {
     "start": "nodemon",
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/puresamari/simon.git"
   },
-  "author": "",
+  "author": "Simon Rothert <puresamari@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/puresamari/simon/issues"
@@ -34,5 +34,14 @@
     "typescript": "^3.9.6",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"
-  }
+  },
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "dependencies": {},
+  "keywords": [
+    "simonlang",
+    "jsdialect"
+  ]
 }
