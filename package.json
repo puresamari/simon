@@ -19,7 +19,7 @@
     "url": "git+https://github.com/puresamari/simon.git"
   },
   "author": "Simon Rothert <puresamari@gmail.com>",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/puresamari/simon/issues"
   },
