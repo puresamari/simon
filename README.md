@@ -2,6 +2,10 @@
 
 Hi my name is `SIMON` and this is a language I'm developing for fun. Have a look at the [playground]
 
+# Extensions
+
+- If you are using vscode you can install the language support plugin on the [marketplace](https://marketplace.visualstudio.com/items?itemName=rothert.simonlang).
+
 # Installation
     npm i [-g|-D|-S] @puresamari/simonlang
 
